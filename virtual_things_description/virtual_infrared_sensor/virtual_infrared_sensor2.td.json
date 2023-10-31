@@ -1,0 +1,57 @@
+{
+    "@context":[
+        "https://www.w3.org/2019/wot/td/v1",
+        {
+          "@language":"en"
+        }
+      ],
+    "@type":"Thing",
+    "title": "VirtualInfraredSensor2",
+    "id": "urn:dev:ops:32473-virtualSensor-2",
+    "description": "virtual sensor 2 in coppeliasim",
+    "security": "nosec_sc",
+    "securityDefinitions": { 
+      "nosec_sc": {
+        "scheme": "nosec" 
+      }
+    },
+    "properties": {
+        "objectPresence":{
+            "title": "Read infrared sensor",
+            "description": "Get the sensor state to check object presence",
+            "type": "boolean",
+            "readOnly": true,
+            "observable": true,
+            "forms": [
+              {
+                "href": "http://localhost:9000/virtualinfraredsensor2/properties/objectPresence",
+                "contentType": "application/json",
+                "op": [
+                  "readproperty"
+                ],
+                "htv:methodName": "GET"
+              }
+            ]
+        }
+
+    },
+    "events": {
+      "detectedObject": {
+        "data": {
+          "type": "boolean"
+        },
+        "description": "Detects the rising edge of the signal of the infrared sensor.",
+        "forms": [
+          {
+            "contentType": "application/json",
+            "href": "http://localhost:9000/virtualinfraredsensor2/events/detectedObject",
+            "op": [
+              "subscribeevent"
+            ],
+            "subprotocol": "longpoll"
+          }
+        ],
+        "title": "Object detected"
+      }
+    }
+}

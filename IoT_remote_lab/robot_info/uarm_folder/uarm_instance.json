@@ -1,0 +1,182 @@
+{
+  "title": "coppeliasim_virtualrobot_uarm",
+  "id": "urn:dev:ops:32473-virtual-uarm",
+  "description": "The TD document for digital twins of uarm",
+  "links": [
+    {
+      "href": "http://localhost:4000/uarm_robot/uarm_shape.stl",
+      "type": "model/stl",
+      "rel": "workspace"
+    },
+    {
+      "href": "http://localhost:4000/uarm_robot/uarm_data_point.csv",
+      "type": "text/csv",
+      "rel": "dataset-points"
+    },
+    {
+      "href": "http://localhost:4000/uarm_robot/IoT_remote_lab.ttt",
+      "type": "application/octet-stream",
+      "rel": "coppeliasim scene"
+    }
+  ],
+  "@context": ["https://www.w3.org/2019/wot/td/v1", { "@language": "en" }],
+  "@type": "Thing",
+  "security": "nosec_sc",
+  "securityDefinitions": { "nosec_sc": { "scheme": "nosec" } },
+  "properties": {
+    "getJointposition": {
+      "title": "get position of each joint",
+      "description": "maxItems,minItems,minimum,maximum are decided by sprecific virtual robot",
+      "type": "object",
+      "properties": {
+        "joint1": {
+          "type": "number",
+          "unit": "deg",
+          "minimum": 0,
+          "maximum": 180.00000500895786
+        },
+        "joint2": {
+          "type": "number",
+          "unit": "deg",
+          "minimum": 0,
+          "maximum": 135.0000003416235
+        },
+        "joint3": {
+          "type": "number",
+          "unit": "deg",
+          "minimum": 42.00000116875664,
+          "maximum": 142.00000167478154
+        },
+        "joint4": {
+          "type": "number",
+          "unit": "deg",
+          "minimum": 0,
+          "maximum": 180.00000500895786
+        }
+      },
+      "readOnly": true,
+      "observable": true,
+      "forms": [
+        {
+          "href": "http://localhost:8070/coppeliasim_virtualrobot_uarm/properties/getJointposition",
+          "contentType": "application/json",
+          "op": ["readproperty"],
+          "htv:methodName": "GET"
+        }
+      ]
+    },
+    "getCartesianposition": {
+      "title": "get cartesian position of robotic end-effector",
+      "description": "minimum,maximum is decided by specific robot",
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": -34.770185470581,
+          "maximum": 369.6398191452,
+          "unit": "millimeter"
+        },
+        "y": {
+          "type": "number",
+          "minimum": -324.49587478638,
+          "maximum": 321.53565051258,
+          "unit": "millimeter"
+        },
+        "z": {
+          "type": "number",
+          "minimum": -25.102833747864,
+          "maximum": 176.61835765839,
+          "unit": "millimeter"
+        }
+      },
+      "observable": true,
+      "readOnly": true,
+      "forms": [
+        {
+          "href": "http://localhost:8070/coppeliasim_virtualrobot_uarm/properties/getCartesianposition",
+          "contentType": "application/json",
+          "op": ["readproperty"],
+          "htv:methodName": "GET"
+        }
+      ]
+    }
+  },
+  "actions": {
+    "moveTojointPosition": {
+      "title": "let robot move according to joint position",
+      "description": "maxItems,minItems,minimum,maximum are decided by sprecific virtual robot",
+      "input": {
+        "type": "object",
+        "properties": {
+          "joint1": {
+            "type": "number",
+            "unit": "deg",
+            "minimum": 0,
+            "maximum": 180.00000500895786
+          },
+          "joint2": {
+            "type": "number",
+            "unit": "deg",
+            "minimum": 0,
+            "maximum": 135.0000003416235
+          },
+          "joint3": {
+            "type": "number",
+            "unit": "deg",
+            "minimum": 42.00000116875664,
+            "maximum": 142.00000167478154
+          },
+          "joint4": {
+            "type": "number",
+            "unit": "deg",
+            "minimum": 0,
+            "maximum": 180.00000500895786
+          }
+        }
+      },
+      "forms": [
+        {
+          "href": "http://localhost:8070/coppeliasim_virtualrobot_uarm/actions/moveTojointPosition",
+          "contentType": "application/json",
+          "op": ["invokeaction"],
+          "htv:methodName": "PUT"
+        }
+      ]
+    },
+    "moveTocartesianPosition": {
+      "title": "make robot move according to cartesian position",
+      "description": "minimum,maximum are decided by sprecific virtual robot",
+      "input": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "minimum": -34.770185470581,
+            "maximum": 369.6398191452,
+            "unit": "millimeter"
+          },
+          "y": {
+            "type": "number",
+            "minimum": -324.49587478638,
+            "maximum": 321.53565051258,
+            "unit": "millimeter"
+          },
+          "z": {
+            "type": "number",
+            "minimum": -25.102833747864,
+            "maximum": 176.61835765839,
+            "unit": "millimeter"
+          }
+        }
+      },
+      "forms": [
+        {
+          "href": "http://localhost:8070/coppeliasim_virtualrobot_uarm/actions/moveTocartesianPosition",
+          "contentType": "application/json",
+          "op": ["invokeaction"],
+          "htv:methodName": "PUT"
+        }
+      ]
+    }
+  }
+}
